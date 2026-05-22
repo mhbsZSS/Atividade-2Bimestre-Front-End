@@ -1,0 +1,618 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa; /* Fundo cinza bem claro */
+            color: #333; /* Texto cinza escuro para boa leitura */
+        }
+
+        /* 2. ESTILO DO CABEÇALHO */
+        .cabecalho-principal {
+            background-color: #d32f2f; /* Vermelho escuro de pizzaria */
+            color: white;
+            padding: 20px;
+            display: flex; /* Coloca logo e menu na mesma linha */
+            justify-content: space-between; /* Um de cada lado da tela */
+            align-items: center; /* Centraliza verticalmente */
+        }
+        
+        /* Estilo dos links do menu */
+        .menu ul {
+            list-style: none; /* Tira as "bolinhas" da lista */
+            display: flex; /* Coloca os links do menu lado a lado */
+            gap: 25px; /* Espaço entre os links */
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none; /* Tira o sublinhado do link */
+            font-weight: bold;
+        }
+
+        .menu a:hover {
+            color: #ffc107; /* Fica amarelo ao passar o mouse! (Interatividade) */
+        }
+
+        /* 3. CONTEÚDO PRINCIPAL */
+        .conteudo-principal {
+            padding: 40px 20px;
+            text-align: center; /* Centraliza o título principal */
+        }
+
+        .titulo-pagina {
+            margin-bottom: 30px;
+            color: #d32f2f;
+        }
+
+        /* 4. A MÁGICA DO FLEXBOX (Organizando as Pizzas) */
+        .grade-de-pizzas {
+            display: flex; /* Transforma a caixa numa linha flexível */
+            justify-content: center; /* Centraliza os cartões no meio da tela */
+            gap: 30px; /* Espaço entre cada cartão de pizza */
+            flex-wrap: wrap; /* Se a tela for pequena, joga o cartão pra baixo */
+        }
+
+        /* 5. ESTILO DO CARTÃO DE PIZZA (O Box Model na prática) */
+        .cartao-pizza {
+            background-color: white;
+            padding: 20px; /* Espaço interno */
+            border-radius: 10px; /* Bordas arredondadas */
+            width: 300px; /* Largura fixa do cartão */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave para dar efeito 3D */
+            transition: transform 0.3s; /* Prepara uma animação suave */
+        }
+
+        .cartao-pizza:hover {
+            transform: translateY(-10px); /* O cartão "pula" ao passar o mouse */
+        }
+
+        .cartao-pizza img {
+            width: 100%; /* A imagem ocupa 100% da largura do cartão */
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .sabor-nome {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .sabor-ingredientes {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            height: 40px; /* Mantém os textos alinhados independente do tamanho */
+        }
+
+        .sabor-preco {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2e7d32; /* Verde para remeter a dinheiro/aprovação */
+            margin-bottom: 20px;
+        }
+
+        /* 6. ESTILO DO BOTÃO */
+        .botao-pedir {
+            display: inline-block; /* Permite colocar padding num link */
+            background-color: #ff9800; /* Amarelo/Laranja */
+            color: #000;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px; /* Botão bem arredondado */
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .botao-pedir:hover {
+            background-color: #e68a00; /* Escurece ao passar o mouse */
+        }
+
+        /* 7. RODAPÉ */
+        .rodape-principal {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* ================================================================ */
+        /* 8. ESTILO DO CARRINHO */
+        /* ================================================================ */
+        #carrinho-container {
+            background-color: #fff3e0; /* Fundo bege claro */
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #carrinho-container h2 {
+            color: #ff9800;
+            margin-bottom: 15px;
+        }
+
+        #lista-carrinho {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .item-carrinho {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid #d32f2f;
+            font-size: 0.95rem;
+            display: flex; /* Coloca o texto e botão lado a lado */
+            justify-content: space-between; /* Separa para pontas opostas */
+            align-items: center; /* Centraliza verticalmente */
+            gap: 10px;
+        }
+
+        .item-info {
+            flex: 1; /* Ocupa o máximo de espaço disponível */
+        }
+
+        .item-texto {
+            display: block;
+        }
+
+        /* Botão Remover Item */
+        .botao-remover {
+            background-color: #d32f2f; /* Vermelho (alertando que vai remover) */
+            color: white;
+            border: none;
+            border-radius: 50%; /* Botão circular */
+            width: 28px;
+            height: 28px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0; /* Impede que o botão encolha */
+        }
+
+        .botao-remover:hover {
+            background-color: #b71c1c; /* Vermelho mais escuro ao passar o mouse */
+            transform: scale(1.15); /* Aumenta um pouco ao passar o mouse */
+            box-shadow: 0 2px 8px rgba(211, 47, 47, 0.4);
+        }
+
+        .botao-remover:active {
+            transform: scale(0.95); /* Diminui quando clicado (feedback visual) */
+        }
+
+        #total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        /* Botão Finalizar Pedido */
+        .botao-finalizar {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #2e7d32; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .botao-finalizar:hover {
+            background-color: #1b5e20; /* Verde mais escuro */
+            transform: scale(1.05);
+        }
+
+        .botao-finalizar:active {
+            transform: scale(0.98);
+        }
+
+        /* ================================================================ */
+        /* 9. ESTILO DO MODAL (OVERLAY + CONTEÚDO) */
+        /* ================================================================ */
+
+        /* Overlay - fundo escurecido que cobre toda a tela */
+        .overlay-modal {
+            position: fixed; /* Fica fixo na tela */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Preto com 60% de opacidade */
+            display: none; /* Inicialmente oculto */
+            z-index: 998; /* Fica atrás do modal, mas na frente do resto */
+        }
+
+        /* Modal - caixa de conteúdo principal */
+        .modal-pedido {
+            position: fixed; /* Fica fixo na tela */
+            top: 50%; /* Começa no meio da tela */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centraliza o modal */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Sombra mais forte para destacar */
+            width: 90%; /* 90% da largura da tela */
+            max-width: 500px; /* Mas no máximo 500px */
+            display: none; /* Inicialmente oculto */
+            z-index: 999; /* Fica na frente de tudo */
+            animation: abrirModal 0.3s ease-out; /* Animação ao abrir */
+        }
+
+        /* Animação de abertura do modal */
+        @keyframes abrirModal {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -45%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Cabeçalho do modal */
+        .modal-cabecalho {
+            background-color: #d32f2f; /* Vermelho (cor da pizzaria) */
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0; /* Arredonda só o topo */
+            border-bottom: 3px solid #b71c1c;
+        }
+
+        .modal-cabecalho h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Corpo do modal */
+        .modal-corpo {
+            padding: 20px;
+            max-height: 400px; /* Define altura máxima */
+            overflow-y: auto; /* Se ultrapassar, aparece scroll vertical */
+        }
+
+        .modal-corpo h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Lista de pizzas dentro do modal */
+        .modal-lista {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .modal-lista li {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid #ff9800;
+            border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-lista li span {
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        /* Linha de separação */
+        .modal-corpo hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 15px 0;
+        }
+
+        /* Seção de totais */
+        .modal-totais {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .modal-totais p {
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .modal-valor-total {
+            font-size: 1.3rem !important;
+            color: #2e7d32 !important;
+            margin-top: 15px !important;
+        }
+
+        /* Rodapé do modal com botões */
+        .modal-rodape {
+            display: flex; /* Coloca os botões lado a lado */
+            gap: 10px; /* Espaço entre os botões */
+            padding: 15px 20px 20px 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Estilos base dos botões do modal */
+        .botao-modal {
+            flex: 1; /* Cada botão ocupa 50% da largura */
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Botão Confirmar */
+        .botao-confirmar {
+            background-color: #2e7d32; /* Verde */
+            color: white;
+        }
+
+        .botao-confirmar:hover {
+            background-color: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Botão Fechar */
+        .botao-fechar {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .botao-fechar:hover {
+            background-color: #bbb;
+            transform: translateY(-2px);
+        }
+
+        /* Mostrar o modal e overlay quando estão com a classe "ativo" */
+        .modal-pedido.ativo,
+        .overlay-modal.ativo {
+            display: block;
+        }
+
+        /* ================================================================ */
+        /* 10. ESTILO DA PÁGINA DE CONTATO                                  */
+        /* ================================================================ */
+
+        /* Conteúdo da página de contato */
+        .conteudo-contato {
+            padding: 40px 20px;
+            background-color: #f8f9fa;
+            min-height: calc(100vh - 200px); /* Ocupa pelo menos a altura da tela */
+        }
+
+        /* Container do formulário */
+        .container-formulario {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Título da página de contato */
+        .titulo-pagina {
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        /* Subtítulo da página */
+        .subtitulo-contato {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Formulário de contato */
+        .formulario-contato {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Grupos de campos */
+        .grupo-campo {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        /* Labels dos campos */
+        .label-campo {
+            font-weight: bold;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        /* Contador de caracteres dentro do label */
+        .contador-caracteres {
+            font-weight: normal;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Inputs de texto, e-mail e tel */
+        .input-campo,
+        .textarea-campo,
+        .select-campo {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Input focus */
+        .input-campo:focus,
+        .textarea-campo:focus,
+        .select-campo:focus {
+            outline: none;
+            border-color: #d32f2f; /* Vermelho da pizzaria */
+            box-shadow: 0 0 8px rgba(211, 47, 47, 0.2);
+        }
+
+        /* Input com erro */
+        .campo-erro {
+            border-color: #d32f2f !important;
+            background-color: #ffebee; /* Rosa bem claro */
+        }
+
+        /* Textarea de mensagem */
+        .textarea-campo {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Select (dropdown) */
+        .select-campo {
+            cursor: pointer;
+            background-color: white;
+        }
+
+        /* Informação do contador de caracteres */
+        .info-contador {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .caracteres-atuais {
+            font-weight: bold;
+            color: #d32f2f; /* Vermelho inicialmente */
+        }
+
+        /* Label da checkbox */
+        .label-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: normal;
+            color: #333;
+        }
+
+        .label-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #d32f2f; /* Cor vermelha ao clicar */
+        }
+
+        /* Mensagens de erro */
+        .mensagem-erro {
+            color: #d32f2f; /* Vermelho */
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: block;
+            min-height: 18px; /* Espaço reservado para a mensagem */
+        }
+
+        /* Grupo de botões */
+        .grupo-botoes {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Botão Enviar */
+        .botao-enviar {
+            flex: 1;
+            padding: 12px;
+            background-color: #2e7d32; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .botao-enviar:hover {
+            background-color: #1b5e20; /* Verde mais escuro */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+        }
+
+        .botao-enviar:active {
+            transform: translateY(0);
+        }
+
+        .botao-enviar:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Botão Limpar */
+        .botao-limpar {
+            flex: 1;
+            padding: 12px;
+            background-color: #ff9800; /* Laranja */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .botao-limpar:hover {
+            background-color: #e68a00; /* Laranja mais escuro */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+        }
+
+        .botao-limpar:active {
+            transform: translateY(0);
+        }
+
+        /* Mensagem de sucesso */
+        .mensagem-sucesso {
+            background-color: #e8f5e9; /* Verde bem claro */
+            border-left: 4px solid #2e7d32; /* Borda verde */
+            padding: 15px;
+            border-radius: 5px;
+            color: #1b5e20; /* Verde escuro */
+            font-size: 0.95rem;
+            text-align: center;
+            animation: aparecer 0.3s ease-out;
+        }
+
+        /* Animação de aparecimento da mensagem */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizzaria Fatec - Fale Conosco</title>
+    <link rel="stylesheet" href="style_pizzaria.css">
+</head>
+<body>
+
+    <header class="cabecalho-principal">
+        <div class="logo">
+            <h2>🍕 Fatec Pizza</h2>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="pizzaria_css.html">Início</a></li>
+                <li><a href="pizzaria_css.html">Cardápio</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo-contato">
+        <div class="container-formulario">
+            <h1 class="titulo-pagina">Fale Conosco</h1>
+            <p class="subtitulo-contato">Dúvidas, críticas ou sugestões? Mande para a Fatec Pizza.</p>
+
+            <form class="formulario-contato" novalidate>
+                
+                <div class="grupo-campo">
+                    <label class="label-campo" for="nome">Nome:</label>
+                    <input type="text" id="nome" class="input-campo" placeholder="Digite seu nome completo">
+                    <span id="erro-nome" class="mensagem-erro"></span>
+                </div>
+
+                <div class="grupo-campo">
+                    <label class="label-campo" for="email">E-mail:</label>
+                    <input type="email" id="email" class="input-campo" placeholder="exemplo@email.com">
+                    <span id="erro-email" class="mensagem-erro"></span>
+                </div>
+
+                <div class="grupo-campo">
+                    <label class="label-campo" for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" class="textarea-campo" placeholder="Deixe sua mensagem (mínimo 10 caracteres)"></textarea>
+                    <span id="erro-mensagem" class="mensagem-erro"></span>
+                </div>
+
+                <div class="grupo-botoes">
+                    <button type="submit" class="botao-enviar">Enviar Mensagem</button>
+                    <button type="reset" class="botao-limpar" id="btn-limpar">Limpar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="contato.js"></script>
+
+    <footer class="rodape-principal">
+        <p>&copy; 2026 Pizzaria Fatec Pompéia. Todos os direitos reservados.</p>
+        <p>Desenvolvido pelos alunos de Sistemas Inteligentes.</p>
+    </footer>
+
+</body>
+</html>
